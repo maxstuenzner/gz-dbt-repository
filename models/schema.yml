@@ -1,20 +1,49 @@
 version: 2
 
-sources: 
+sources:
   - name: raw
     description: Rohdaten
     schema: gz_raw_data
     tables:
       - name: sales
-        description: Sales Data
-        identifier: raw_gz_sales
+        description: sales data
+        identifier: raw_gz_sales_copy
+        columns: 
+          - name: date_date
+            description: date_of_purchase
+          - name: orders_id
+            description: unique id of orders
+          - name: products_id
+            description: unique id of products
+          - name: revenue
+            description: Einnahmen
+          - name: quantity
+            description: nb of products sold
       - name: product
         description: Product Data
-        identifier: raw_gz_product
+        identifier: raw_gz_product_copy
+        columns:
+          - name: products_id
+            description: Unique ID of Product
+            tests:
+              - unique
+              - not_null
+          - name: purchase_price
+            description: Float of purchasing price
       - name: ship
         description: Shipping Data
-        identifier: raw_gz_ship
+        identifier: raw_gz_ship_copy
+        columns:
+          - name: orders_id
+            description: unique id of orders
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: paid by the customer
+          - name: logcost
+            description: logistics cost
+          - name: ship_cost
+            description: shipping cost
 
-
-  
-      
+          
