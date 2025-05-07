@@ -1,10 +1,16 @@
-SELECT 
-  joint.orders_id,
-  joint.date_date,
-  ROUND((joint.margin + s.shipping_fee - s.log_cost - s.ship_cost),2) as operational_margin
 
-FROM 
-  {{ ref('stg_raw__ship') }} AS s
-JOIN
-  {{ ref('int_orders_margin') }} AS joint
-  ON joint.orders_id = s.orders_id
+   SELECT
+     o.orders_id
+     ,o.date_date
+     ,ROUND(o.margin + s.shipping_fee - (s.log_cost + s.ship_cost),2) AS operational_margin
+     ,o.quantity
+     ,o.revenue
+     ,o.purchase_cost
+     ,o.margin
+     ,s.shipping_fee
+     ,s.log_cost
+     ,s.ship_cost
+ FROM {{ref("int_orders_margin")}} o
+ LEFT JOIN {{ ref('stg_raw__ship') }} s
+     USING(orders_id)
+ ORDER BY orders_id desc
