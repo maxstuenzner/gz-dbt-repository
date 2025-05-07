@@ -66,6 +66,14 @@ sources:
             description: Anzahl der Impressionen
           - name: click
             description: Anzahl der Klicks
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key || '_' || paid_source)"
+          - not_null:
+              column_name:
+                - date_date
+                - campaign_key
+                - paid_source
 
       - name: bing
         description: Bing Data
@@ -85,6 +93,14 @@ sources:
             description: Anzahl der Impressionen
           - name: click
             description: Anzahl der Klicks
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key || '_' || paid_source)"
+          - not_null:
+              column_name:
+                - date_date
+                - campaign_key
+                - paid_source
 
       - name: criteo
         description: Criteo Data
@@ -104,6 +120,14 @@ sources:
             description: Anzahl der Impressionen
           - name: click
             description: Anzahl der Klicks
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key || '_' || paid_source)"
+          - not_null:
+              column_name:
+                - date_date
+                - campaign_key
+                - paid_source
 
       - name: facebook
         description: Facebook Data
@@ -123,3 +147,11 @@ sources:
             description: Anzahl der Impressionen
           - name: click
             description: Anzahl der Klicks
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key || '_' || paid_source)"
+          - not_null:
+              column_name:
+                - date_date
+                - campaign_key
+                - paid_source
