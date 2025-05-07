@@ -8,7 +8,7 @@ sources:
       - name: sales
         description: sales data
         identifier: raw_gz_sales_copy
-        columns: 
+        columns:
           - name: date_date
             description: date_of_purchase
           - name: orders_id
@@ -19,6 +19,9 @@ sources:
             description: Einnahmen
           - name: quantity
             description: nb of products sold
+        tests:
+          - unique:
+              column_name: "(orders_id || '-' || pdt_id)"
       - name: product
         description: Product Data
         identifier: raw_gz_product_copy
